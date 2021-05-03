@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="a761fa8b2f1b4850ff03b6a62799b6d1" sys_domain="global" table="x_jarodm_slacksso_team" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>j4rodm</sys_created_by>
+            <sys_created_on>2020-03-06 20:59:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>6b61fa8b2f1b4850ff03b6a62799b6d2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_jarodm_slacksso_team" name="x_jarodm_slacksso_team" sys_domain="global" view="Default view">a761fa8b2f1b4850ff03b6a62799b6d1</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_jarodm_slacksso_team" sys_domain="global" view="Default view">1b34868b2f974850ff03b6a62799b67d</sys_ui_section>
+            <sys_updated_by>j4rodm</sys_updated_by>
+            <sys_updated_on>2020-03-06 20:59:30</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>j4rodm</sys_created_by>
+            <sys_created_on>2020-03-06 20:59:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>e76136cb2f1b4850ff03b6a62799b6ea</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_jarodm_slacksso_team" name="x_jarodm_slacksso_team" sys_domain="global" view="Default view">a761fa8b2f1b4850ff03b6a62799b6d1</sys_ui_form>
+            <sys_ui_section caption="Integration" display_value="Integration" name="x_jarodm_slacksso_team" sys_domain="global" view="Default view">a761fa8b2f1b4850ff03b6a62799b6d3</sys_ui_section>
+            <sys_updated_by>j4rodm</sys_updated_by>
+            <sys_updated_on>2020-03-06 20:59:30</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>j4rodm</sys_created_by>
+            <sys_created_on>2020-03-06 21:00:02</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>1381b6cb2f1b4850ff03b6a62799b692</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_jarodm_slacksso_team" name="x_jarodm_slacksso_team" sys_domain="global" view="Default view">a761fa8b2f1b4850ff03b6a62799b6d1</sys_ui_form>
+            <sys_ui_section caption="Notes" display_value="Notes" name="x_jarodm_slacksso_team" sys_domain="global" view="Default view">5381be8b2f1b4850ff03b6a62799b628</sys_ui_section>
+            <sys_updated_by>j4rodm</sys_updated_by>
+            <sys_updated_on>2020-03-06 21:00:02</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_jarodm_slacksso_team</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>j4rodm</sys_created_by>
+            <sys_created_on>2020-03-06 20:59:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>a761fa8b2f1b4850ff03b6a62799b6d1</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_jarodm_slacksso_team</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+            <sys_update_name>sys_ui_form_sections_a761fa8b2f1b4850ff03b6a62799b6d1</sys_update_name>
+            <sys_updated_by>j4rodm</sys_updated_by>
+            <sys_updated_on>2020-03-06 20:59:30</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

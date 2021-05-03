@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_home">
+    <sys_home action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition/>
+        <language>en</language>
+        <order>8</order>
+        <published>2020-02-22</published>
+        <short_description>Slack Login</short_description>
+        <sys_class_name>sys_home</sys_class_name>
+        <sys_created_by>j4rodm</sys_created_by>
+        <sys_created_on>2020-02-22 20:07:41</sys_created_on>
+        <sys_id>a4a867b22fcb8c10ff03b6a62799b693</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Slack Login</sys_name>
+        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_update_name>sys_home_a4a867b22fcb8c10ff03b6a62799b693</sys_update_name>
+        <sys_updated_by>j4rodm</sys_updated_by>
+        <sys_updated_on>2020-03-08 00:28:49</sys_updated_on>
+        <text><![CDATA[<p><span style="font-size: 12pt;">Login with your Team&#39;s Slack Account</span>:</p>
+<p><a href="/api/x_jarodm_slacksso/auth" target="_top" rel="noopener noreferrer nofollow"><img src="sign-in.png" alt="Sign In Button" width="172" height="40" /></a></p>
+<p> </p>]]></text>
+    </sys_home>
+</record_update>

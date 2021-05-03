@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_jarodm_slacksso.SlackSSOAuth</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>SI Desc</description>
+        <name>SlackSSOAuth</name>
+        <script><![CDATA[var SlackSSOAuth = Class.create();
+SlackSSOAuth.prototype = {
+	initialize: function(location) {
+
+		if(!location){
+			location = 'SI';
+		}
+		gs.debug('SI called from:'+location);
+
+	},
+
+	getInstanceFQDN: function(){
+
+		var instanceName = gs.getProperty('x_jarodm_slacksso.fqdn');
+		if(!instanceName){
+			instanceName = gs.getProperty('instance_name') + '.service-now.com'; 
+		}
+
+		return instanceName;
+
+	},
+	getRedirURL: function(){
+
+		var instanceCustomURL = gs.getProperty('x_jarodm_slacksso.fqdn');
+		if(!instanceCustomURL){
+			instanceCustomURL = gs.getProperty('instance_name') + '.service-now.com'; 
+		}
+
+		var redirEndpoint = gs.getProperty('x_jarodm_slacksso.redir_endpoint');
+		var redirURL = 'https://' + instanceCustomURL + redirEndpoint;
+
+		return redirURL;
+
+	},
+
+	getBounceURL: function(){
+
+		var instanceCustomURL = gs.getProperty('x_jarodm_slacksso.fqdn');
+		if(!instanceCustomURL){
+			instanceCustomURL = gs.getProperty('instance_name') + '.service-now.com'; 
+		}
+
+		var redirEndpoint = gs.getProperty('x_jarodm_slacksso.bounce.endpoint');
+		var redirURL = 'https://' + instanceCustomURL + redirEndpoint;
+
+		return redirURL;
+
+	},
+
+	getExtensionRecord: function(extID){
+
+		if(!extID){
+			return false;
+		}
+
+		var extRec = new GlideRecord('x_jarodm_slacksso_extension_token');
+		extRec.setLimit(1);
+		extRec.addQuery('active',true);
+		extRec.addQuery('extension_id',extID);
+		extRec.query();
+		if(extRec.next()){
+
+			return extRec;
+
+		}else{
+
+			return false;
+
+		}
+
+	},
+
+	getTeamRecord: function(teamSlackID){
+
+		gs.debug('getTeamRecord: processing with '+teamSlackID);
+		
+		if(!teamSlackID){
+			return false;
+		}
+
+		var teamRec = new GlideRecord('x_jarodm_slacksso_team');
+		teamRec.setLimit(1);
+		teamRec.addQuery('active',true);
+		teamRec.addQuery('slack_id',teamSlackID);
+		teamRec.query();
+		if(teamRec.next()){
+
+			gs.debug('getTeamRecord: found team '+teamRec.name);
+			return teamRec;
+
+		}else{
+
+			gs.debug('getTeamRecord: could not find active team');
+			return false;
+
+		}
+
+	},
+
+
+	applyRolesToUser: function(userID,teamSlackID){
+
+		gs.debug('applyRolesToUser: processing with user:'+userID+' teamSlackID:'+teamSlackID);
+		
+		var teamRec = this.getTeamRecord(teamSlackID);
+		
+		if (!teamRec){
+			gs.debug('applyRolesToUser: could not find teamRec');
+			return false;
+		}
+		
+		var roleList = teamRec.default_roles;
+		if (!roleList){
+			gs.debug('applyRolesToUser: found team, but had no roles configured');
+			return false;
+		}
+		
+		var roleArr = roleList.split(',');
+		gs.debug('applyRolesToUser: found roles configued for team:'+roleArr.length);
+		
+		for (var i=0; i< roleArr.length; i++) {
+			
+			gs.debug('applyRolesToUser: processing '+i+' roleID:'+roleArr[i]);
+			
+			var roleLink = new GlideRecord('sys_user_has_role');
+			roleLink.addQuery('state','active');
+			roleLink.addQuery('user',userID);
+			roleLink.addQuery('role',roleArr[i]);
+			roleLink.query();
+			if(roleLink.next()){
+
+				gs.debug('user already has role');
+
+			}else{
+
+				roleLink.initialize();
+				roleLink.user = userID;
+				roleLink.role = roleArr[i];
+				roleLink.state = 'active';
+				roleLink.insert();
+
+			}
+
+		}
+
+	},
+
+	obfuscateLayer: function(textString) {
+		//Add a minimal layer of obfuscation during the redirect
+		if (!textString && typeof textString != 'string') {
+			return '';
+		}
+
+		var outputString = '';
+
+		for (var i=0; i<textString.length; i++) {
+			outputString += '%' + parseInt(textString.charCodeAt(i)).toString(16);
+		}
+
+		return outputString;
+
+	},
+
+
+	type: 'SlackSSOAuth'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>jarod.mundt</sys_created_by>
+        <sys_created_on>2020-02-21 19:13:17</sys_created_on>
+        <sys_id>c3d2562adb4f8010a1ebb12c4e96199d</sys_id>
+        <sys_mod_count>15</sys_mod_count>
+        <sys_name>SlackSSOAuth</sys_name>
+        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_update_name>sys_script_include_c3d2562adb4f8010a1ebb12c4e96199d</sys_update_name>
+        <sys_updated_by>j4rodm</sys_updated_by>
+        <sys_updated_on>2020-03-08 17:26:04</sys_updated_on>
+    </sys_script_include>
+</record_update>

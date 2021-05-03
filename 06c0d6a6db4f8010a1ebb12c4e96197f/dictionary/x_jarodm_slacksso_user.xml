@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element audit="true" extends="sys_user" label="Slack Users" max_length="40" name="x_jarodm_slacksso_user" sizeclass="1" type="collection">
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Slack team" max_length="32" name="slack_team" reference="x_jarodm_slacksso_team" type="reference"/>
+        <index name="index">
+            <element name="slack_team"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>GET</http_method>
+        <name>5 - Bounce Redirect</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+
+	var ssa = new SlackSSOAuth('SRAPI Relay 5 - Bounce Redirect');
+	var responseObj = {};
+
+	var parms = request.queryParams;
+	var code = parms.code;
+	var state = parms.state;
+
+	var writer = response.getStreamWriter();
+
+	var extRec = ssa.getExtensionRecord(state);
+	if(!extRec){
+		return new sn_ws_err.BadRequestError('Could not find valid extension record from code param');	
+		
+// 		//responseObj.err = 'Invalid extension_id';
+// 		response.setHeader('J-Debug','Good Att');
+// 		//response.setHeader('Location',redirURL);
+// 		response.setStatus(500);
+// 		response.setContentType('text/plain');
+// 		writer.writeString('Could not find token config with code');
+		
+	}
+	
+	
+	
+	var extensionHost = extRec.getValue('instance');
+	var bounceToEndpoint = extRec.getValue('bounce_endpoint');
+
+	var redirURL = extensionHost + bounceToEndpoint + '?code='+code;
+
+	response.setHeader('J-Debug','Good Att');
+	response.setHeader('Location',redirURL);
+	response.setStatus(302);
+	response.setContentType('text/plain');
+	writer.writeString('Success... Redirecting to Slack OAuth login page...');
+
+
+})(request, response);
+]]></operation_script>
+        <operation_uri>/api/x_jarodm_slacksso/relay/bounce</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/bounce</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>false</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>j4rodm</sys_created_by>
+        <sys_created_on>2020-03-07 04:29:25</sys_created_on>
+        <sys_id>8668989f2f1f4850ff03b6a62799b669</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>5 - Bounce Redirect</sys_name>
+        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_update_name>sys_ws_operation_8668989f2f1f4850ff03b6a62799b669</sys_update_name>
+        <sys_updated_by>j4rodm</sys_updated_by>
+        <sys_updated_on>2020-03-07 18:47:15</sys_updated_on>
+        <web_service_definition display_value="Extension Relay">5b8bf2032f5b4850ff03b6a62799b6ff</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>GET</http_method>
+        <name>0 - Login Button</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+
+	// 	var instanceCustomURL = gs.getProperty('x_jarodm_slacksso.fqdn');
+	// 	if(!instanceCustomURL){
+	// 		instanceCustomURL = gs.getProperty('instance_name') + '.service-now.com'; 
+	// 	}
+
+	var ssa = new SlackSSOAuth('Auth 0 - Login Button');
+
+	var instanceCustomURL = ssa.getInstanceFQDN();
+
+	var buttonEndpoint = '/api/x_jarodm_slacksso/auth/login';
+
+	// 	var buttonURL = 'https://' + instanceCustomURL + buttonEndpoint;
+	// 	var buttonImage = '/sign-in.png';
+	// 	var buttonStr = '<a href="'+buttonURL+'"><img alt="Sign in with Slack" height="40" width="172" src="'+buttonImage+'" /></a>';
+
+
+	var writer = response.getStreamWriter();
+
+	response.setContentType('text/html');
+	response.setStatus(200);
+
+	var header = '<html><head><title>ServiceNow Slack Authentication</title>';
+	var body = '</head><body>';
+	var footer = '</body></html>';
+	var topLine = '<p><span style="font-size: 14pt;">Slack teams available on this instance:</span></p>';
+	var htmlTable = '<table style="border-collapse: collapse; width: 100%;" border="1"><tbody>';
+
+	var teams = new GlideRecord('x_jarodm_slacksso_team');
+	teams.addQuery('active',true);
+	teams.query();
+
+	while(teams.next()){
+
+		htmlTable += '<tr>';
+		htmlTable += '<td style="width: 50%;">&nbsp;'+teams.name+'</td>';
+
+		htmlTable += '<td style="width: 50%;">&nbsp;<a href="/api/x_jarodm_slacksso/auth/login?team='+teams.slack_id+'" target="_top" rel="noopener noreferrer nofollow"><img src="/'+teams.team_image.name+'" alt="Sign In Button" width="172" height="40" /></a></td>';
+		htmlTable += '</tr>';
+
+	}
+
+	htmlTable += '</tbody></table>';
+
+
+
+	writer.writeString(header);
+	writer.writeString(body);
+	writer.writeString(topLine);
+	writer.writeString(htmlTable);
+	writer.writeString(footer);
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_jarodm_slacksso/auth</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>false</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>j4rodm</sys_created_by>
+        <sys_created_on>2020-02-21 20:17:02</sys_created_on>
+        <sys_id>01016e6e2f4f4c10ff03b6a62799b664</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>0 - Login Button</sys_name>
+        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_update_name>sys_ws_operation_01016e6e2f4f4c10ff03b6a62799b664</sys_update_name>
+        <sys_updated_by>j4rodm</sys_updated_by>
+        <sys_updated_on>2020-03-08 16:41:18</sys_updated_on>
+        <web_service_definition display_value="Slack Auth">25f02e6e2f4f4c10ff03b6a62799b636</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

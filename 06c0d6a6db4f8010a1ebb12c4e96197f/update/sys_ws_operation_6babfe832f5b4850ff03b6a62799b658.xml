@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>POST</http_method>
+        <name>7 - Process for Extension</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+
+// 	
+	//Built with instructions at: https://api.slack.com/docs/sign-in-with-slack
+
+
+
+	var ssa = new SlackSSOAuth('SRAPI Relay 7 - Process for Extension');
+	
+	var responseObj = {};
+	
+// 	var instanceCustomURL = gs.getProperty('x_jarodm_slacksso.fqdn');
+// 	if(!instanceCustomURL){
+// 		instanceCustomURL = gs.getProperty('instance_name') + '.service-now.com'; 
+// 	}
+
+	//var redirEndpoint = gs.getProperty('x_jarodm_slacksso.redir_endpoint');
+	//var redirURL = 'https://' + instanceCustomURL + redirEndpoint;
+
+	var parms = request.queryParams;
+	var slackCode = parms.code;
+	var extRedirURI = ssa.getBounceURL();
+	var extID = parms.extension_id;
+
+	
+	var extRec = ssa.getExtensionRecord(extID);
+	if(!extRec){
+		return new sn_ws_err.BadRequestError('Could not find valid extension record');	
+	}
+	
+	var slackClientID = extRec.slack_team.client_id;
+	var slackClientSecret = extRec.slack_team.client_secret.getDecryptedValue();
+	gs.debug('slackClientID:'+slackClientID);
+	gs.debug('slackClientSecret:'+slackClientSecret);
+	
+	var restMessage = new sn_ws.RESTMessageV2();
+	restMessage.setEndpoint('https://slack.com/api/oauth.access');
+	restMessage.setHttpMethod('get');
+	restMessage.setQueryParameter('client_id',slackClientID);
+	restMessage.setQueryParameter('client_secret',slackClientSecret);
+	restMessage.setQueryParameter('code',slackCode);
+	restMessage.setQueryParameter('redirect_uri',extRedirURI);
+	var logLevel = gs.getProperty('x_jarodm_slacksso.log_level.rest','basic');
+	restMessage.setLogLevel(logLevel);
+	
+	var slackRes = restMessage.execute();
+	var httpStatus = slackRes.getStatusCode();
+	var httpHeader = slackRes.getHeaders();
+	var responseBody = slackRes.getBody();
+	var responseErr = slackRes.getErrorMessage();
+
+	gs.debug('getIP HTTP Headers:'+JSON.stringify(httpHeader));
+	gs.debug('getIP Body: '+responseBody);
+
+	if(httpStatus == 200){
+		
+		responseObj.slack_body = JSON.parse(responseBody);
+
+	}else{
+		
+		responseObj.slack_body = {};
+		
+	}
+	
+	responseObj.slack_error = responseErr;
+	responseObj.slack_headers = httpHeader;
+	responseObj.slack_status = httpStatus;
+	
+	return responseObj;
+	
+
+})(request, response);
+
+
+
+]]></operation_script>
+        <operation_uri>/api/x_jarodm_slacksso/relay/process</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/process</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>false</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>j4rodm</sys_created_by>
+        <sys_created_on>2020-03-06 21:44:41</sys_created_on>
+        <sys_id>6babfe832f5b4850ff03b6a62799b658</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>7 - Process for Extension</sys_name>
+        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_update_name>sys_ws_operation_6babfe832f5b4850ff03b6a62799b658</sys_update_name>
+        <sys_updated_by>j4rodm</sys_updated_by>
+        <sys_updated_on>2020-03-07 18:54:33</sys_updated_on>
+        <web_service_definition display_value="Extension Relay">5b8bf2032f5b4850ff03b6a62799b6ff</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>
