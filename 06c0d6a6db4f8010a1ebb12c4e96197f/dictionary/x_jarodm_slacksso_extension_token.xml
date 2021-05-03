@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="sys_report_import_table_parent" label="Extension token" max_length="40" name="x_jarodm_slacksso_extension_token" sizeclass="2" type="collection">
+        <element attributes="edge_encryption_enabled=true" default="true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element label="Bounce endpoint" max_length="80" name="bounce_endpoint" type="string"/>
+        <element default="javascript: GlideSecureRandomUtil.getSecureRandomString(16)" label="Extension ID" max_length="16" name="extension_id" type="string"/>
+        <element label="Instance" max_length="1024" name="instance" type="url"/>
+        <element label="Name" max_length="80" name="name" type="string"/>
+        <element label="POC" max_length="80" name="poc" type="string"/>
+        <element attributes="edge_encryption_enabled=true,encode_utf8=false" label="Slack team" max_length="32" name="slack_team" reference="x_jarodm_slacksso_team" type="reference"/>
+        <element attributes="edge_encryption_enabled=true,no_data_replicate=true" default="javascript: GlideSecureRandomUtil.getSecureRandomString(24)" label="Token" max_length="255" name="token" type="password2"/>
+    </element>
+</database>

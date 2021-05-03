@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>Bounce Endpoint (starts with /api/...)</description>
+        <ignore_cache>false</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_jarodm_slacksso.bounce.endpoint</name>
+        <read_roles/>
+        <suffix>bounce.endpoint</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>j4rodm</sys_created_by>
+        <sys_created_on>2020-03-07 04:56:15</sys_created_on>
+        <sys_id>0b4e18932f5f4850ff03b6a62799b69f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_jarodm_slacksso.bounce.endpoint</sys_name>
+        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_update_name>sys_properties_0b4e18932f5f4850ff03b6a62799b69f</sys_update_name>
+        <sys_updated_by>j4rodm</sys_updated_by>
+        <sys_updated_on>2020-03-07 04:56:15</sys_updated_on>
+        <type>string</type>
+        <value>/api/x_jarodm_slacksso/relay/bounce</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=0b4e18932f5f4850ff03b6a62799b69f"/>
+</record_update>

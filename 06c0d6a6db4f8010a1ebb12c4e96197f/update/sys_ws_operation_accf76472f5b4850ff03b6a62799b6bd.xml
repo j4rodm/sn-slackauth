@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>GET</http_method>
+        <name>2 - Supply Client ID</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+
+	var ssa = new SlackSSOAuth('SRAPI Relay 1 - Supply Client ID');
+	
+	//Get Token
+	var parms = request.queryParams;
+	var extID = parms.extension_id;
+	var extToken = parms.extension_token;
+	
+	//gs.debug('parms:'+JSON.stringify(parms));
+	
+	if(!extID || extID == ''){
+		return new sn_ws_err.BadRequestError('Missing extension_id in the querystring');
+	}
+	
+	if(!extToken || extToken == ''){
+		return new sn_ws_err.BadRequestError('Missing extension_token in the querystring');
+	}
+	
+
+	var responseObj = {};
+
+	//Lookup extension token
+	//Grab Slack Team's Client ID
+	var tokenList = new GlideRecord('x_jarodm_slacksso_extension_token');
+	tokenList.setLimit(1);
+	tokenList.addQuery('extension_id',extID);
+	tokenList.query();
+	if(tokenList.next()){
+		
+		responseObj.name = tokenList.getValue('name');
+		responseObj.instance = tokenList.getValue('instance');
+		responseObj.relay_redir_url = ssa.getBounceURL();
+		
+		var extensionToken = tokenList.token.getDecryptedValue();
+		
+		if (extToken == extensionToken){
+			
+			var team = tokenList.slack_team.getRefRecord();
+			responseObj.slack_name = team.getValue('name');
+			responseObj.slack_client_id = team.getValue('client_id');
+			responseObj.slack_id = team.getValue('slack_id');
+			
+		}else{
+			return new sn_ws_err.BadRequestError('Invalid extension_token');			
+		}
+		
+	
+	}else{
+			
+		return new sn_ws_err.BadRequestError('Invalid extension_id');	
+	}
+	
+		
+	
+	return responseObj;
+	
+
+})(request, response);
+
+
+
+]]></operation_script>
+        <operation_uri>/api/x_jarodm_slacksso/relay/slack_token</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/slack_token</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>false</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>j4rodm</sys_created_by>
+        <sys_created_on>2020-03-06 22:02:06</sys_created_on>
+        <sys_id>accf76472f5b4850ff03b6a62799b6bd</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>2 - Supply Client ID</sys_name>
+        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_update_name>sys_ws_operation_accf76472f5b4850ff03b6a62799b6bd</sys_update_name>
+        <sys_updated_by>j4rodm</sys_updated_by>
+        <sys_updated_on>2020-03-07 05:17:46</sys_updated_on>
+        <web_service_definition display_value="Extension Relay">5b8bf2032f5b4850ff03b6a62799b6ff</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

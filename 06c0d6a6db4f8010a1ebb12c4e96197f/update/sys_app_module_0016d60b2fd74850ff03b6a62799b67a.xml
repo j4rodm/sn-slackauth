@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="Slack SSO">8ed2d22adb4f8010a1ebb12c4e961954</application>
+        <assessment/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>LIST</link_type>
+        <map_page/>
+        <mobile_title>Extension tokens</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name>x_jarodm_slacksso_extension_token</name>
+        <order>1100</order>
+        <override_menu_roles>false</override_menu_roles>
+        <query/>
+        <report/>
+        <roles>x_jarodm_slacksso.manager</roles>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>j4rodm</sys_created_by>
+        <sys_created_on>2020-03-06 18:59:56</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>0016d60b2fd74850ff03b6a62799b67a</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Tokens</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_update_name>sys_app_module_0016d60b2fd74850ff03b6a62799b67a</sys_update_name>
+        <sys_updated_by>j4rodm</sys_updated_by>
+        <sys_updated_on>2020-03-06 21:15:36</sys_updated_on>
+        <timeline_page/>
+        <title>Tokens</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+</record_update>

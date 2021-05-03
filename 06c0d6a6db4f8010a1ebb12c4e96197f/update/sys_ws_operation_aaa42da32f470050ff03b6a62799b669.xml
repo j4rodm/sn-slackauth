@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>GET</http_method>
+        <name>1 - Redirect</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+
+
+	var ssa = new SlackSSOAuth('Auth 1 - Redirect');
+	
+	var parms = request.queryParams;
+	var slackTeamID = parms.team;
+	
+	if(!slackTeamID || slackTeamID.length != 1){
+		
+		sn_ws_err.BadRequestError('Need to have parameter of team');
+		
+	}
+	
+	var stateCode = slackTeamID; 
+	var slackClientID = gs.getProperty('x_jarodm_slacksso.slack.client_id');
+
+	
+	
+	var redirURL = ssa.getRedirURL();
+
+
+	var url = 'https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id='+slackClientID+'&state='+stateCode+'&redirect_uri='+redirURL;
+
+
+	var writer = response.getStreamWriter();
+
+	response.setHeader('J-Debug','Good Att');
+	response.setHeader('Location',url);
+	response.setStatus(302);
+	response.setContentType('text/plain');
+	writer.writeString('Success... Redirecting to Slack OAuth login page...');
+
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_jarodm_slacksso/auth/login</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/login</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>false</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>j4rodm</sys_created_by>
+        <sys_created_on>2020-02-24 18:29:27</sys_created_on>
+        <sys_id>aaa42da32f470050ff03b6a62799b669</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>1 - Redirect</sys_name>
+        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_update_name>sys_ws_operation_aaa42da32f470050ff03b6a62799b669</sys_update_name>
+        <sys_updated_by>j4rodm</sys_updated_by>
+        <sys_updated_on>2020-03-08 16:41:22</sys_updated_on>
+        <web_service_definition display_value="Slack Auth">25f02e6e2f4f4c10ff03b6a62799b636</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>
