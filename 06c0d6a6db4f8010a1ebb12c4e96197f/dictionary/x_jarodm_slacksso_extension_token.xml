@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element extends="sys_report_import_table_parent" label="Extension token" max_length="40" name="x_jarodm_slacksso_extension_token" sizeclass="2" type="collection">
+    <element extends="sys_report_import_table_parent" label="Extension token" max_length="40" name="x_jarodm_slacksso_extension_token" sizeclass="3" type="collection">
         <element attributes="edge_encryption_enabled=true" default="true" label="Active" max_length="40" name="active" type="boolean"/>
         <element label="Bounce endpoint" max_length="80" name="bounce_endpoint" type="string"/>
         <element default="javascript: GlideSecureRandomUtil.getSecureRandomString(16)" label="Extension ID" max_length="16" name="extension_id" type="string"/>

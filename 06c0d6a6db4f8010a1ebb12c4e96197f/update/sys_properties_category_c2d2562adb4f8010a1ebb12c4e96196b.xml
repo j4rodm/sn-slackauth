@@ -5,15 +5,15 @@
         <sys_created_by>jarod.mundt</sys_created_by>
         <sys_created_on>2020-02-21 19:13:13</sys_created_on>
         <sys_id>c2d2562adb4f8010a1ebb12c4e96196b</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>Slack Community SSO</sys_name>
-        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_package display_value="Slack SSO Authentication" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_scope display_value="Slack SSO Authentication">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
         <sys_update_name>sys_properties_category_c2d2562adb4f8010a1ebb12c4e96196b</sys_update_name>
-        <sys_updated_by>j4rodm</sys_updated_by>
-        <sys_updated_on>2020-02-22 20:46:07</sys_updated_on>
-        <title><![CDATA[<p>Allow login to a SN instance from the SNDevs Slack members</p>]]></title>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-05-08 14:34:01</sys_updated_on>
+        <title><![CDATA[<p>More Info: <a title="https://github.com/j4rodm/sn-slackauth" href="https://github.com/j4rodm/sn-slackauth" target="_blank" rel="noopener noreferrer nofollow">https://github.com/j4rodm/sn-slackauth</a><br />Support: <a title="SNDevs Slack" href="https://sndevs.com" target="_blank" rel="noopener noreferrer nofollow">SNDevs Slack</a> Channel #sndevs_sso_dev</p>]]></title>
     </sys_properties_category>
     <sys_translated_text action="delete_multiple" query="documentkey=c2d2562adb4f8010a1ebb12c4e96196b"/>
 </record_update>

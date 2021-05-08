@@ -18,7 +18,7 @@
     </sys_properties_category_m2m>
     <sys_update_version action="INSERT_OR_UPDATE">
         <action>DELETE</action>
-        <application display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</application>
+        <application display_value="Slack SSO Authentication">06c0d6a6db4f8010a1ebb12c4e96197f</application>
         <file_path/>
         <instance_id>c1deea73db5113403353f22ebf96195b</instance_id>
         <instance_name>dev56174</instance_name>
@@ -51,10 +51,10 @@
         <sys_metadata>be82822b2f870050ff03b6a62799b664</sys_metadata>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>x_jarodm_slacksso.proactive_reset.Slack Community SSO</sys_name>
-        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_package display_value="Slack SSO Authentication" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
         <sys_parent/>
         <sys_policy/>
-        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_scope display_value="Slack SSO Authentication">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
         <sys_scope_delete display_value="">3e6757cf66b54a44841ec94efc08b284</sys_scope_delete>
         <sys_update_name>sys_properties_category_m2m_be82822b2f870050ff03b6a62799b664</sys_update_name>
         <sys_update_version display_value="sys_properties_category_m2m_be82822b2f870050ff03b6a62799b664">a92749742f081010ff03b6a62799b6be</sys_update_version>

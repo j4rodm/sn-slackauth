@@ -56,9 +56,9 @@
         <sys_id>8916d60b2fd74850ff03b6a62799b6bb</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>Instance</sys_name>
-        <sys_package display_value="Slack SSO Auth" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
+        <sys_package display_value="Slack SSO Authentication" source="x_jarodm_slacksso">06c0d6a6db4f8010a1ebb12c4e96197f</sys_package>
         <sys_policy/>
-        <sys_scope display_value="Slack SSO Auth">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
+        <sys_scope display_value="Slack SSO Authentication">06c0d6a6db4f8010a1ebb12c4e96197f</sys_scope>
         <sys_update_name>sys_dictionary_x_jarodm_slacksso_extension_token_instance</sys_update_name>
         <sys_updated_by>j4rodm</sys_updated_by>
         <sys_updated_on>2020-03-06 19:00:58</sys_updated_on>
